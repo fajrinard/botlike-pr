@@ -43,20 +43,20 @@ def botlike(token, accid, hasil):
             print ('\n (Like)\n user: '+a[1]+', post id: '+a[0]+', like: '+err+', error code: '+er+'.')
 
 try:
-    f = open('token.txt', 'r')
-    x = f.read().split('\n')
-    acc = x[0]
-    tok = x[1]
+    username = sys.argv[1]
+    password = sys.argv[2]
+    x = login(username, password)
+    acc = x['accountId']
+    tok = x['accessToken']
+    f = open('token.txt', 'w')
+    f.write(acc+'\n'+tok)
+    f.close()
 except:
     try:
-        username = sys.argv[1]
-        password = sys.argv[2]
-        x = login(username, password)
-        acc = x['accountId']
-        tok = x['accessToken']
-        f = open('token.txt', 'w')
-        f.write(acc+'\n'+tok)
-        f.close()
+        f = open('token.txt', 'r')
+        x = f.read().split('\n')
+        acc = x[0]
+        tok = x[1]
     except:
         pass
 
